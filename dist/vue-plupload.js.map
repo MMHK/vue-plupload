@@ -1,0 +1,1 @@
+{"version":3,"names":[],"mappings":"","sources":["index.js"],"sourcesContent":["var VuePlupload = require('./src/vue-plupload.vue')\r\n\r\nvar vuepluploader = {\r\n    install: function(Vue) {\r\n        Vue.component('vue-plupload', VuePlupload)\r\n    }\r\n}\r\n\r\nmodule.exports = vuepluploader"],"file":"vue-plupload.js"}
