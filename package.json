@@ -1,35 +1,38 @@
 {
-  "name": "vue-plupload",
-  "version": "1.0.0",
-  "description": "plupload wrapper for vue",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mm-sam/vue-plupload.git"
-  },
-  "keywords": [
-    "vue",
-    "plupload"
-  ],
-  "author": "Sam",
-  "license": "GPL-2.0",
-  "bugs": {
-    "url": "https://github.com/mm-sam/vue-plupload/issues"
-  },
-  "homepage": "https://github.com/mm-sam/vue-plupload#readme",
-  "dependencies": {
-    "bootstrap": "^3.3.7",
-    "plupload": "^2.3.2",
-    "vue": "^1.0.28"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-browserify": "^0.5.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^2.6.0",
-    "vueify": "^8.7.0"
-  }
+    "name": "vue-plupload",
+    "version": "1.0.0",
+    "description": "plupload wrapper for vue",
+    "main": "index.js",
+    "scripts": {
+        "dev": "gulp dev",
+        "dist": "gulp default"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mm-sam/vue-plupload.git"
+    },
+    "keywords": [
+        "vue",
+        "plupload"
+    ],
+    "author": "Sam",
+    "license": "GPL-2.0",
+    "bugs": {
+        "url": "https://github.com/mm-sam/vue-plupload/issues"
+    },
+    "homepage": "https://github.com/mm-sam/vue-plupload#readme",
+    "dependencies": {
+        "lodash": "^4.17.4",
+        "lodash.merge": "^4.6.0",
+        "plupload": "^2.3.2",
+        "vue": "^1.0.28"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-browserify": "^0.5.1",
+        "gulp-rename": "^1.2.2",
+        "gulp-sourcemaps": "^2.6.0",
+        "gulp-uglify": "^3.0.0",
+        "vueify": "^8.7.0"
+    }
 }

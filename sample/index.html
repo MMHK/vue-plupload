@@ -11,16 +11,48 @@
 
 <body>
     <div id="App">
-        <vue-plupload @added="handleAdded"></vue-plupload>
+        <vue-plupload @added="handleAdded" @progress="handleProgress" @error="handleError" @uploaded="handleUploaded" :options="uploadOpt"></vue-plupload>
+        <pre>
+        {{log}}
+        </pre>
     </div>
     <script>
         Vue.use(VuePlupload);
         var vm = new Vue({
             el: "#App",
 
+            data: {
+                uploadOpt: {
+                    url: "http://posttestserver.com/post.php",
+                    filters: {
+                        max_file_size: '10mb',
+                        mime_types: [{
+                            title: "Image files",
+                            extensions: "jpg,gif,png"
+                        }]
+                    },
+                },
+                log: ""
+            },
+
             methods: {
-                handleAdded: function() {
-                    console.log(arguments);
+                handleAdded: function(uploader, files) {
+                    files.forEach(function(file) {
+                        vm.log += "begin upload file:" + file.name + "\n";
+                    });
+                    uploader.start()
+                },
+
+                handleProgress: function(uploader, file) {
+                    vm.log += "file:" + file.name + " uploading, progress:" + file.percent + "\n";
+                },
+
+                handleError: function(uploader, err) {
+                    vm.log += "upload error:\n======\n" + JSON.stringify(err) + "\n======\n";
+                },
+
+                handleUploaded: function(uploader, file, result) {
+                    vm.log += "file: " + file.name + " upload complete result: \n======\n" + result.response + "\n======\n";
                 }
             }
         });

@@ -3,6 +3,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var browserify = require("gulp-browserify");
 var vueify = require("vueify");
 var rename = require("gulp-rename");
+var uglify = require('gulp-uglify');
 
 
 gulp.task('set-dev-node-env', function() {
@@ -22,9 +23,7 @@ gulp.task('vueify', ["set-prod-node-env"], function() {
             extensions: [".vue"],
             standalone: "VuePlupload"
         }))
-        .on('prebundle', function(bundler) {
-            bundler.external('vue');
-        })
+        .pipe(uglify())
         .pipe(rename("vue-plupload.js"))
         .pipe(sourcemaps.write("."))
         .pipe(gulp.dest('dist'));
@@ -32,7 +31,6 @@ gulp.task('vueify', ["set-prod-node-env"], function() {
 
 gulp.task("sample", ["set-dev-node-env"], function() {
     return gulp.src("./index.js")
-        .pipe(sourcemaps.init())
         .pipe(browserify({
             transform: ["vueify"],
             extensions: [".vue"],
@@ -40,7 +38,10 @@ gulp.task("sample", ["set-dev-node-env"], function() {
             debug: true
         }))
         .pipe(rename("bundle.js"))
-        .pipe(sourcemaps.write("."))
+        .on('error', function(error) {
+            console.log(error.toString())
+            this.emit("end")
+        })
         .pipe(gulp.dest('sample'));
 });
 
