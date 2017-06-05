@@ -10,18 +10,37 @@
 ## 使用
 
 - 直接`script`引用，请直接引用 `dist` 目录下的文件。
-- `CommonJS` 方式引用
-```JS
-var vue = require("vue);
-var VuePluload = require("vue-plupload");
 
+- `CommonJS` 方式
+    - js引入
+        ```JS
+        var vue = require("vue");
+        var VuePluload = require("vue-plupload");
+        vue.use(VuePluload);
+        ```
+    - 模版中引用，
+    ```HTML
+    <vue-plupload></vue-plupload>
+    ```
 
-vue.use(VuePluload);
-```
-- 模版中引用，
-```HTML
-<vue-plupload></vue-plupload>
-```
+- `RequireJS`方式
+    - config:
+    ```JS
+    requirejs.config({
+        "vue-plupload": "[你本地的vue-plupload引用路径]"
+    })
+    ``` 
+    - js引入
+    ```JS
+    require(["vue", "vue-plupload"], function(Vue, VuePlupload){
+        Vue.use(VuePlupload);
+    })
+    ```
+    - 模版中引用，
+    ```HTML
+    <vue-plupload></vue-plupload>
+    ```
+
 
 ## 参数
 
