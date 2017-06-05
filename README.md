@@ -4,7 +4,7 @@
 
 ## 栗子
 
-请参考 `docs`目录。
+请参考 `docs`目录。 [Demo](https://mmhk.github.io/vue-plupload/)
 
 
 ## 使用
