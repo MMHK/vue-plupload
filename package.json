@@ -1,7 +1,7 @@
 {
     "name": "vue-plupload",
     "version": "1.0.0",
-    "description": "plupload wrapper for vue",
+    "description": "plupload wrapper for vue 1.x",
     "main": "index.js",
     "scripts": {
         "dev": "gulp dev",
