@@ -1,9 +1,12 @@
 var gulp = require('gulp');
 var sourcemaps = require('gulp-sourcemaps');
-var browserify = require("gulp-browserify");
 var vueify = require("vueify");
 var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var gutil = require('gulp-util');
+var browserify = require('browserify');
 
 
 gulp.task('set-dev-node-env', function() {
@@ -16,33 +19,44 @@ gulp.task('set-prod-node-env', function() {
 
 
 gulp.task('vueify', ["set-prod-node-env"], function() {
-    return gulp.src("./index.js")
-        .pipe(sourcemaps.init())
-        .pipe(browserify({
-            transform: ["vueify"],
-            extensions: [".vue"],
-            standalone: "VuePlupload"
-        }))
-        .pipe(uglify())
-        .pipe(rename("vue-plupload.js"))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest('dist'));
+     // set up the browserify instance on a task basis
+    var b = browserify({
+        entries: './index.js',
+        debug: false,
+        transform: ["vueify"],
+        extensions: [".vue"],
+        standalone: "VuePlupload"
+    });
+    
+    b.external("vue");
+    
+    return b.bundle()
+        .pipe(source('vue-plupload.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init({loadMaps: true}))
+            // Add transformation tasks to the pipeline here.
+            .pipe(uglify())
+            .on('error', gutil.log)
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest("dist"));
 });
 
 gulp.task("sample", ["set-dev-node-env"], function() {
-    return gulp.src("./index.js")
-        .pipe(browserify({
-            transform: ["vueify"],
-            extensions: [".vue"],
-            standalone: "VuePlupload",
-            debug: true
-        }))
-        .pipe(rename("bundle.js"))
-        .on('error', function(error) {
-            console.log(error.toString())
-            this.emit("end")
-        })
-        .pipe(gulp.dest('sample'));
+    // set up the browserify instance on a task basis
+    var b = browserify({
+        entries: './index.js',
+        debug: true,
+        transform: ["vueify"],
+        extensions: [".vue"],
+        standalone: "VuePlupload"
+    });
+    
+    b.external("vue");
+    
+    return b.bundle()
+        .pipe(source('bundle.js'))
+        .pipe(buffer())
+        .pipe(gulp.dest("docs"));
 });
 
 gulp.task("dev", function() {

@@ -23,6 +23,7 @@
 }
 </style>
 <script>
+var Vue = global.Vue || require("vue");
 var plupload = require("plupload");
 var _ = require('lodash');
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.3/require.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="App" class="container">
+        <div class="page-header">
+            <h1>Plupload wrapper for Vue 1.x <small>Example：</small></h1>
+        </div>
+        <div class="jumbotron">
+            <vue-plupload @added="handleAdded" @progress="handleProgress" @error="handleError" @uploaded="handleUploaded" :options="uploadOpt"></vue-plupload>
+        </div>
+        <div class="form-group">
+            <label>Log:</label>
+            <pre>{{log}}</pre>
+        </div>
+
+    </div>
+    <script>
+    require(["vue", "bundle"], function(Vue, VuePlupload){
+        Vue.use(VuePlupload);
+        var vm = new Vue({
+            el: "#App",
+
+            data: {
+                uploadOpt: {
+                    url: "http://posttestserver.com/post.php",
+                    filters: {
+                        max_file_size: '10mb',
+                        mime_types: [{
+                            title: "Image files",
+                            extensions: "jpg,gif,png"
+                        }]
+                    },
+                },
+                log: ""
+            },
+
+            methods: {
+                handleAdded: function (uploader, files) {
+                    files.forEach(function (file) {
+                        vm.log += "begin upload file:" + file.name + "\n";
+                    });
+                    uploader.start()
+                },
+
+                handleProgress: function (uploader, file) {
+                    vm.log += "file:" + file.name + " uploading, progress:" + file.percent + "\n";
+                },
+
+                handleError: function (uploader, err) {
+                    vm.log += "upload error:\n======\n" + JSON.stringify(err) + "\n======\n";
+                },
+
+                handleUploaded: function (uploader, file, result) {
+                    vm.log += "file: " + file.name + " upload complete result: \n======\n" + result.response +
+                        "\n======\n";
+                }
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>
