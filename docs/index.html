@@ -5,7 +5,7 @@
     <title></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue/2.3.4/vue.min.js"></script>
     <script src="./bundle.js"></script>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
@@ -14,7 +14,7 @@
 <body>
     <div id="App" class="container">
         <div class="page-header">
-            <h1>Plupload wrapper for Vue 1.x <small>Example：</small></h1>
+            <h1>Plupload wrapper for Vue 2.x <small>Example：</small></h1>
         </div>
         <div class="jumbotron">
             <vue-plupload @added="handleAdded" @progress="handleProgress" @error="handleError" @uploaded="handleUploaded" :options="uploadOpt"></vue-plupload>

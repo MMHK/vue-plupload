@@ -25,7 +25,7 @@
         "lodash": "^4.17.4",
         "lodash.merge": "^4.6.0",
         "plupload": "^2.3.2",
-        "vue": "^1.0.28"
+        "vue": "^2.3.4"
     },
     "devDependencies": {
         "browserify": "^14.4.0",
@@ -36,6 +36,6 @@
         "gulp-util": "^3.0.8",
         "vinyl-buffer": "^1.0.0",
         "vinyl-source-stream": "^1.1.0",
-        "vueify": "^8.7.0"
+        "vueify": "^9.4.1"
     }
 }

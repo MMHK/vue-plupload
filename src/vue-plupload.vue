@@ -1,5 +1,5 @@
 <template>
-    <input v-el:btn class="{{class}}" value="{{text}}" type="button" />
+    <input ref="btn" :class="className" :value="text" type="button" />
 </template>
 <style>
 .plupload-btn {
@@ -33,7 +33,7 @@ var uploaderDefaultOption = {
 
 module.exports = Vue.extend({
     props: {
-        class: {
+        className: {
             type: String,
             default: "plupload-btn"
         },
@@ -50,47 +50,53 @@ module.exports = Vue.extend({
             }
         }
     },
+    
+    methods: {
+        renderUI: function() {
+            var self = this;
 
-    detached: function() {
+            Vue.nextTick(function () {
 
+                var opt = _.merge(uploaderDefaultOption, self.options, {
+
+                    browse_button: self.$refs.btn,
+
+                    init: {
+                        PostInit: function (uploader) {
+                            self.$emit("init", uploader)
+                        },
+
+                        FilesAdded: function (up, files) {
+                            self.$emit("added", up, files)
+                        },
+
+                        UploadProgress: function (up, file) {
+                            self.$emit("progress", up, file)
+                        },
+
+                        FileUploaded: function(up, file, result) {
+                            self.$emit("uploaded", up, file, result)
+                        },
+
+                        Error: function (up, err) {
+                            self.$emit("error", up, err)
+                        }
+                    }
+                })
+
+                var uploader = new plupload.Uploader(opt);
+
+                uploader.init();
+            });
+        }
     },
 
-    attached: function () {
-        var self = this;
-
-        Vue.nextTick(function () {
-
-            var opt = _.merge(uploaderDefaultOption, self.options, {
-
-                browse_button: self.$els.btn,
-
-                init: {
-                    PostInit: function (uploader) {
-                        self.$emit("init", uploader)
-                    },
-
-                    FilesAdded: function (up, files) {
-                        self.$emit("added", up, files)
-                    },
-
-                    UploadProgress: function (up, file) {
-                        self.$emit("progress", up, file)
-                    },
-
-                    FileUploaded: function(up, file, result) {
-                        self.$emit("uploaded", up, file, result)
-                    },
-
-                    Error: function (up, err) {
-                        self.$emit("error", up, err)
-                    }
-                }
-            })
-
-            var uploader = new plupload.Uploader(opt);
-
-            uploader.init();
-        });
+    mounted: function () {
+        this.renderUI();
+    },
+    
+    updated: function() {
+        this.renderUI();
     }
 });
 
