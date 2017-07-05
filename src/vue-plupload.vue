@@ -50,17 +50,41 @@ module.exports = Vue.extend({
             }
         }
     },
+    
+    data : function() {
+        return {
+            uploader: null
+        }
+    },
 
     detached: function() {
 
     },
-
-    attached: function () {
-        var self = this;
-
-        Vue.nextTick(function () {
-
-            var opt = _.merge(uploaderDefaultOption, self.options, {
+    
+    watch : {
+        "options" : {
+            handler: function(val, oldVal) {
+                var self = this;
+                
+                if (!self.uploader) {
+                    self.renderPlupload();
+                } else {
+                    var opt = self.mergeOptions(val);
+                    self.uploader.setOption(opt);
+                }
+                
+                console.log("options change!");
+                console.log(val)
+            },
+            deep: true
+        }
+    },
+    
+    methods: {
+        mergeOptions: function(val) {
+            var self = this;
+        
+            return _.merge(uploaderDefaultOption, val, {
 
                 browse_button: self.$els.btn,
 
@@ -85,12 +109,24 @@ module.exports = Vue.extend({
                         self.$emit("error", up, err)
                     }
                 }
-            })
+            });
+        },
+        renderPlupload: function() {
+            var self = this;
 
-            var uploader = new plupload.Uploader(opt);
+            Vue.nextTick(function () {
 
-            uploader.init();
-        });
+                var opt = self.mergeOptions(self.options);
+
+                self.uploader = new plupload.Uploader(opt);
+
+                self.uploader.init();
+            });
+        }
+    },
+
+    attached: function () {
+        this.renderPlupload();
     }
 });
 

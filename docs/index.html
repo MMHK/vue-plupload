@@ -17,7 +17,12 @@
             <h1>Plupload wrapper for Vue 1.x <small>Example：</small></h1>
         </div>
         <div class="jumbotron">
-            <vue-plupload @added="handleAdded" @progress="handleProgress" @error="handleError" @uploaded="handleUploaded" :options="uploadOpt"></vue-plupload>
+            <vue-plupload @added="handleAdded" @progress="handleProgress" @error="handleError" @uploaded="handleUploaded" :options.sync="uploadOpt"></vue-plupload>
+            <div class="btn-group">
+                <button @click="setOption(1)" class="btn btn-default" type="button">With Params 1</button>
+                <button @click="setOption(2)" class="btn btn-default" type="button">With Params 2</button>
+                <button @click="setOption(3)" class="btn btn-default" type="button">With Params 3</button>
+            </div>
         </div>
         <div class="form-group">
             <label>Log:</label>
@@ -45,6 +50,9 @@
             },
 
             methods: {
+                setOption : function(val) {
+                    Vue.set(this.uploadOpt, "multipart_params", {test: val});
+                },
                 handleAdded: function (uploader, files) {
                     files.forEach(function (file) {
                         vm.log += "begin upload file:" + file.name + "\n";

@@ -57,3 +57,7 @@
 - `progress`, 对应`plupload` 事件 `UploadProgress`。
 - `uploaded`, 对应`plupload` 事件 `FileUploaded`。
 - `error`, 对应`plupload` 事件 `Error`。
+
+## 属性
+
+组件暴露 一个属性 `uploader` 指向所创建的 `plupload` 实例。
