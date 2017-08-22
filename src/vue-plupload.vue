@@ -85,30 +85,7 @@ module.exports = Vue.extend({
             var self = this;
         
             return _.merge(uploaderDefaultOption, val, {
-
-                browse_button: self.$els.btn,
-
-                init: {
-                    PostInit: function (uploader) {
-                        self.$emit("init", uploader)
-                    },
-
-                    FilesAdded: function (up, files) {
-                        self.$emit("added", up, files)
-                    },
-
-                    UploadProgress: function (up, file) {
-                        self.$emit("progress", up, file)
-                    },
-
-                    FileUploaded: function(up, file, result) {
-                        self.$emit("uploaded", up, file, result)
-                    },
-
-                    Error: function (up, err) {
-                        self.$emit("error", up, err)
-                    }
-                }
+                browse_button: self.$els.btn
             });
         },
         renderPlupload: function() {
@@ -120,7 +97,28 @@ module.exports = Vue.extend({
 
                 self.uploader = new plupload.Uploader(opt);
 
+                self.uploader.bind("PostInit", function(uploader){
+                    self.$emit("init", uploader);
+                });
+                
+                self.uploader.bind("FilesAdded", function(up, files){
+                    self.$emit("added", up, files);
+                });
+                
+                self.uploader.bind("UploadProgress", function(up, file){
+                    self.$emit("progress", up, file);
+                });
+                
+                self.uploader.bind("FileUploaded", function(up, file, result){
+                    self.$emit("uploaded", up, file, result);
+                });
+                
+                self.uploader.bind("Error", function(up, err){
+                    self.$emit("error", up, err);
+                });
+                
                 self.uploader.init();
+
             });
         }
     },
