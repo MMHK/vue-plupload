@@ -25,7 +25,7 @@
 <script>
 var Vue = global.Vue || require("vue");
 var plupload = require("plupload");
-var _ = require('lodash');
+var merge = require('lodash/merge');
 
 var uploaderDefaultOption = {
     runtimes: 'html5,html4'
@@ -57,7 +57,7 @@ module.exports = Vue.extend({
 
             Vue.nextTick(function () {
 
-                var opt = _.merge(uploaderDefaultOption, self.options, {
+                var opt = merge(uploaderDefaultOption, self.options, {
 
                     browse_button: self.$refs.btn,
 
