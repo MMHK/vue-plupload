@@ -1,5 +1,5 @@
 <template>
-    <input v-el:btn class="{{class}}" value="{{text}}" type="button" />
+    <input v-el:btn :class="class" :value="text" type="button" />
 </template>
 <style>
 .plupload-btn {
@@ -23,11 +23,11 @@
 }
 </style>
 <script>
-var Vue = global.Vue || require("vue");
-var plupload = require("plupload");
-var _ = require('lodash');
+const Vue = global.Vue || require("vue");
+const plupload = require("plupload");
+const merge = require('lodash.merge');
 
-var uploaderDefaultOption = {
+const uploaderDefaultOption = {
     runtimes: 'html5,html4'
 };
 
@@ -64,17 +64,12 @@ module.exports = Vue.extend({
     watch : {
         "options" : {
             handler: function(val, oldVal) {
-                var self = this;
-                
-                if (!self.uploader) {
-                    self.renderPlupload();
+                if (!this.uploader) {
+                    this.renderPlupload();
                 } else {
-                    var opt = self.mergeOptions(val);
-                    self.uploader.setOption(opt);
+                    let opt = this.mergeOptions(val);
+                    this.uploader.setOption(opt);
                 }
-                
-                console.log("options change!");
-                console.log(val)
             },
             deep: true
         }
@@ -82,42 +77,40 @@ module.exports = Vue.extend({
     
     methods: {
         mergeOptions: function(val) {
-            var self = this;
-        
-            return _.merge(uploaderDefaultOption, val, {
-                browse_button: self.$els.btn
+            return merge(uploaderDefaultOption, val, {
+                browse_button: this.$els.btn
             });
         },
         renderPlupload: function() {
-            var self = this;
+            let self = this;
 
-            Vue.nextTick(function () {
+            Vue.nextTick(() => {
 
-                var opt = self.mergeOptions(self.options);
+                let opt = this.mergeOptions(this.options);
 
-                self.uploader = new plupload.Uploader(opt);
+                this.uploader = new plupload.Uploader(opt);
 
-                self.uploader.bind("PostInit", function(uploader){
+                this.uploader.bind("PostInit", function(uploader){
                     self.$emit("init", uploader);
                 });
-                
-                self.uploader.bind("FilesAdded", function(up, files){
+
+                this.uploader.bind("FilesAdded", function(up, files){
                     self.$emit("added", up, files);
                 });
-                
-                self.uploader.bind("UploadProgress", function(up, file){
+
+                this.uploader.bind("UploadProgress", function(up, file){
                     self.$emit("progress", up, file);
                 });
-                
-                self.uploader.bind("FileUploaded", function(up, file, result){
+
+                this.uploader.bind("FileUploaded", function(up, file, result){
                     self.$emit("uploaded", up, file, result);
                 });
-                
-                self.uploader.bind("Error", function(up, err){
+
+                this.uploader.bind("Error", function(up, err){
                     self.$emit("error", up, err);
                 });
-                
-                self.uploader.init();
+
+                this.uploader.init();
 
             });
         }
