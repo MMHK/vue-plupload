@@ -23,15 +23,16 @@
 }
 </style>
 <script>
-var Vue = global.Vue || require("vue");
-var plupload = require("plupload");
-var merge = require('lodash/merge');
+import Vue from "vue";
+import plupload from "plupload";
+import { merge } from "lodash-es"
 
 var uploaderDefaultOption = {
     runtimes: 'html5,html4'
 };
 
-module.exports = Vue.extend({
+export default {
+    name: "vue-plupload",
     props: {
         className: {
             type: String,
@@ -98,6 +99,6 @@ module.exports = Vue.extend({
     updated: function() {
         this.renderUI();
     }
-});
+};
 
 </script>

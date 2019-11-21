@@ -1,11 +1,12 @@
 {
     "name": "vue-plupload",
-    "version": "1.1.0",
-    "description": "plupload wrapper for vue 1.x",
+    "version": "2.1.1",
+    "description": "plupload wrapper for vue",
     "main": "index.js",
     "scripts": {
-        "dev": "gulp dev",
-        "dist": "gulp default"
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build --mode production --target lib --name VuePlupload index.js",
+        "lint": "vue-cli-service lint"
     },
     "repository": {
         "type": "git",
@@ -22,20 +23,43 @@
     },
     "homepage": "https://github.com/mm-sam/vue-plupload#readme",
     "dependencies": {
-        "lodash": "^4.17.4",
-        "lodash.merge": "^4.6.0",
+        "lodash-es": "^4.17.15",
         "plupload": "^2.3.2",
         "vue": "^2.3.4"
     },
     "devDependencies": {
-        "browserify": "^14.4.0",
-        "gulp": "^3.9.1",
-        "gulp-rename": "^1.2.2",
-        "gulp-sourcemaps": "^2.6.0",
-        "gulp-uglify": "^3.0.0",
-        "gulp-util": "^3.0.8",
-        "vinyl-buffer": "^1.0.0",
-        "vinyl-source-stream": "^1.1.0",
-        "vueify": "^9.4.1"
-    }
+        "@babel/plugin-transform-modules-commonjs": "^7.7.0",
+        "@vue/cli-plugin-babel": "^3.4.1",
+        "@vue/cli-plugin-eslint": "^3.4.1",
+        "@vue/cli-service": "^3.4.1",
+        "babel-eslint": "^10.0.1",
+        "bootstrap": "3",
+        "eslint": "^5.8.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "node-sass": "^4.9.0",
+        "sass-loader": "^7.1.0",
+        "vue-template-compiler": "^2.5.21"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "rules": {},
+        "parserOptions": {
+            "parser": "babel-eslint"
+        }
+    },
+    "postcss": {
+        "plugins": {
+            "autoprefixer": {}
+        }
+    },
+    "browserslist": [
+        "> 0.12%"
+    ]
 }

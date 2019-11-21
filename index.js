@@ -1,9 +1,12 @@
-var VuePlupload = require('./src/vue-plupload.vue')
+import VuePlupload  from './src/components/vue-plupload.vue'
 
-var vuepluploader = {
-    install: function(Vue) {
-        Vue.component('vue-plupload', VuePlupload)
-    }
+
+const install = function(Vue) {
+    Vue.component('vue-plupload', VuePlupload)
+};
+
+
+module.exports = {
+    install: install,
+    __esModule: false
 }
-
-module.exports = vuepluploader
