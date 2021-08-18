@@ -23,11 +23,9 @@
 }
 </style>
 <script>
-import Vue from "vue";
 import plupload from "plupload";
-import { merge } from "lodash-es"
 
-var uploaderDefaultOption = {
+const uploaderDefaultOption = {
     runtimes: 'html5,html4'
 };
 
@@ -51,52 +49,61 @@ export default {
             }
         }
     },
+
+    data() {
+        return {
+            uploader: null
+        }
+    },
     
     methods: {
-        renderUI: function() {
-            var self = this;
+        renderUI() {
 
-            Vue.nextTick(function () {
+            this.$nextTick(() => {
 
-                var opt = merge(uploaderDefaultOption, self.options, {
+                if (this.uploader) {
+                    this.uploader.unbindAll();
+                    this.uploader.destroy();
+                }
 
-                    browse_button: self.$refs.btn,
+                const opt = Object.assign(uploaderDefaultOption, self.options, {
+
+                    browse_button: this.$refs.btn,
 
                     init: {
                         PostInit: function (uploader) {
-                            self.$emit("init", uploader)
+                            this.$emit("init", uploader)
                         },
 
                         FilesAdded: function (up, files) {
-                            self.$emit("added", up, files)
+                            this.$emit("added", up, files)
                         },
 
                         UploadProgress: function (up, file) {
-                            self.$emit("progress", up, file)
+                            this.$emit("progress", up, file)
                         },
 
                         FileUploaded: function(up, file, result) {
-                            self.$emit("uploaded", up, file, result)
+                            this.$emit("uploaded", up, file, result)
                         },
 
                         Error: function (up, err) {
-                            self.$emit("error", up, err)
+                            this.$emit("error", up, err)
                         }
                     }
-                })
+                });
 
-                var uploader = new plupload.Uploader(opt);
-
-                uploader.init();
+                this.uploader = new plupload.Uploader(opt);
+                this.uploader.init();
             });
         }
     },
 
-    mounted: function () {
+    mounted() {
         this.renderUI();
     },
     
-    updated: function() {
+    updated() {
         this.renderUI();
     }
 };
