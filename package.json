@@ -1,13 +1,13 @@
 {
     "name": "vue-plupload",
-    "version": "2.1.2",
+    "version": "2.2.3",
     "description": "plupload wrapper for vue",
     "main": "index.js",
     "scripts": {
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build --mode production --target lib --name VuePlupload index.js",
         "lint": "vue-cli-service lint",
-        "publish": "npm config set registry https://registry.npmjs.com && npm publish"
+        "publish": "npm publish --registry=https://registry.npmjs.org"
     },
     "repository": {
         "type": "git",

@@ -71,23 +71,23 @@ export default {
                     browse_button: this.$refs.btn,
 
                     init: {
-                        PostInit: function (uploader) {
+                        PostInit: (uploader) => {
                             this.$emit("init", uploader)
                         },
 
-                        FilesAdded: function (up, files) {
+                        FilesAdded: (up, files) =>  {
                             this.$emit("added", up, files)
                         },
 
-                        UploadProgress: function (up, file) {
+                        UploadProgress: (up, file) => {
                             this.$emit("progress", up, file)
                         },
 
-                        FileUploaded: function(up, file, result) {
+                        FileUploaded: (up, file, result) => {
                             this.$emit("uploaded", up, file, result)
                         },
 
-                        Error: function (up, err) {
+                        Error: (up, err) => {
                             this.$emit("error", up, err)
                         }
                     }

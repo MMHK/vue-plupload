@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "fae3");
+/******/ 	return __webpack_require__(__webpack_require__.s = "fb15");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -499,19 +499,19 @@ var _default2 = {
           browse_button: _this.$refs.btn,
           init: {
             PostInit: function PostInit(uploader) {
-              this.$emit("init", uploader);
+              _this.$emit("init", uploader);
             },
             FilesAdded: function FilesAdded(up, files) {
-              this.$emit("added", up, files);
+              _this.$emit("added", up, files);
             },
             UploadProgress: function UploadProgress(up, file) {
-              this.$emit("progress", up, file);
+              _this.$emit("progress", up, file);
             },
             FileUploaded: function FileUploaded(up, file, result) {
-              this.$emit("uploaded", up, file, result);
+              _this.$emit("uploaded", up, file, result);
             },
             Error: function Error(up, err) {
-              this.$emit("error", up, err);
+              _this.$emit("error", up, err);
             }
           }
         });
@@ -540,16 +540,19 @@ exports.default = _default2;
 
 var _interopRequireDefault = __webpack_require__("288e");
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
 var _vuePlupload = _interopRequireDefault(__webpack_require__("fcd3"));
 
-var install = function install(Vue) {
-  Vue.component('vue-plupload', _vuePlupload.default);
+var _default = {
+  install: function install(Vue) {
+    Vue.component('vue-plupload', _vuePlupload.default);
+  }
 };
-
-module.exports = {
-  install: install,
-  __esModule: false
-};
+exports.default = _default;
 
 /***/ }),
 
@@ -1362,6 +1365,23 @@ module.exports = function (it) {
 
 /***/ }),
 
+/***/ "d89c":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0cec9408-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-plupload.vue?vue&type=template&id=69d70fed&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{ref:"btn",class:_vm.className,attrs:{"value":_vm.text,"type":"button"}})}
+var staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/components/vue-plupload.vue?vue&type=template&id=69d70fed&
+/* concated harmony reexport render */__webpack_require__.d(__webpack_exports__, "a", function() { return render; });
+/* concated harmony reexport staticRenderFns */__webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
+
+
+/***/ }),
+
 /***/ "d8e8":
 /***/ (function(module, exports) {
 
@@ -1393,23 +1413,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_thread_loader_dist_cjs_js_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_thread_loader_dist_cjs_js_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_thread_loader_dist_cjs_js_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_thread_loader_dist_cjs_js_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_node_modules_cache_loader_dist_cjs_js_ref_12_0_node_modules_thread_loader_dist_cjs_js_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "f335":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"27e4cc0f-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-plupload.vue?vue&type=template&id=fd8f0fa8&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('input',{ref:"btn",class:_vm.className,attrs:{"value":_vm.text,"type":"button"}})}
-var staticRenderFns = []
-
-
-// CONCATENATED MODULE: ./src/components/vue-plupload.vue?vue&type=template&id=fd8f0fa8&
-/* concated harmony reexport render */__webpack_require__.d(__webpack_exports__, "a", function() { return render; });
-/* concated harmony reexport staticRenderFns */__webpack_require__.d(__webpack_exports__, "b", function() { return staticRenderFns; });
-
 
 /***/ }),
 
@@ -1475,7 +1478,7 @@ module.exports = __webpack_require__("5537")('native-function-to-string', Functi
 
 /***/ }),
 
-/***/ "fae3":
+/***/ "fb15":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1486,6 +1489,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _entry__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _entry__WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 
 
+/* harmony default export */ __webpack_exports__["default"] = (_entry__WEBPACK_IMPORTED_MODULE_1___default.a);
+
 
 
 /***/ }),
@@ -1495,7 +1500,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vue_plupload_vue_vue_type_template_id_fd8f0fa8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("f335");
+/* harmony import */ var _vue_plupload_vue_vue_type_template_id_69d70fed___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("d89c");
 /* harmony import */ var _vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("e9e2");
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
 /* harmony import */ var _vue_plupload_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("c768");
@@ -1510,8 +1515,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(
   _vue_plupload_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _vue_plupload_vue_vue_type_template_id_fd8f0fa8___WEBPACK_IMPORTED_MODULE_0__[/* render */ "a"],
-  _vue_plupload_vue_vue_type_template_id_fd8f0fa8___WEBPACK_IMPORTED_MODULE_0__[/* staticRenderFns */ "b"],
+  _vue_plupload_vue_vue_type_template_id_69d70fed___WEBPACK_IMPORTED_MODULE_0__[/* render */ "a"],
+  _vue_plupload_vue_vue_type_template_id_69d70fed___WEBPACK_IMPORTED_MODULE_0__[/* staticRenderFns */ "b"],
   false,
   null,
   null,
